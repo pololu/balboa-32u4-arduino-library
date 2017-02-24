@@ -1,6 +1,6 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-#include <Romi32U4Encoders.h>
+#include <Balboa32U4Encoders.h>
 #include <FastGPIO.h>
 #include <avr/interrupt.h>
 #include <Arduino.h>
@@ -55,7 +55,7 @@ static void rightISR()
     lastRightB = newRightB;
 }
 
-void Romi32U4Encoders::init2()
+void Balboa32U4Encoders::init2()
 {
     // Set the pins as pulled-up inputs.
     FastGPIO::Pin<LEFT_XOR>::setInputPulledUp();
@@ -88,7 +88,7 @@ void Romi32U4Encoders::init2()
     errorRight = 0;
 }
 
-int16_t Romi32U4Encoders::getCountsLeft()
+int16_t Balboa32U4Encoders::getCountsLeft()
 {
     init();
 
@@ -98,7 +98,7 @@ int16_t Romi32U4Encoders::getCountsLeft()
     return counts;
 }
 
-int16_t Romi32U4Encoders::getCountsRight()
+int16_t Balboa32U4Encoders::getCountsRight()
 {
     init();
 
@@ -108,7 +108,7 @@ int16_t Romi32U4Encoders::getCountsRight()
     return counts;
 }
 
-int16_t Romi32U4Encoders::getCountsAndResetLeft()
+int16_t Balboa32U4Encoders::getCountsAndResetLeft()
 {
     init();
 
@@ -119,7 +119,7 @@ int16_t Romi32U4Encoders::getCountsAndResetLeft()
     return counts;
 }
 
-int16_t Romi32U4Encoders::getCountsAndResetRight()
+int16_t Balboa32U4Encoders::getCountsAndResetRight()
 {
     init();
 
@@ -130,7 +130,7 @@ int16_t Romi32U4Encoders::getCountsAndResetRight()
     return counts;
 }
 
-bool Romi32U4Encoders::checkErrorLeft()
+bool Balboa32U4Encoders::checkErrorLeft()
 {
     init();
 
@@ -139,7 +139,7 @@ bool Romi32U4Encoders::checkErrorLeft()
     return error;
 }
 
-bool Romi32U4Encoders::checkErrorRight()
+bool Balboa32U4Encoders::checkErrorRight()
 {
     init();
 

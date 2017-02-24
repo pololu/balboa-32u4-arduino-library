@@ -1,23 +1,23 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-/*! \file Romi32U4Motors.h */
+/*! \file Balboa32U4Motors.h */
 
 #pragma once
 
 #include <stdint.h>
 
-/*! \brief Controls motor speed and direction on the Romi 32U4.
+/*! \brief Controls motor speed and direction on the Balboa 32U4.
  *
  * This library uses Timer 1, so it will conflict with any other libraries using
  * that timer. */
-class Romi32U4Motors
+class Balboa32U4Motors
 {
   public:
 
     /** \brief Flips the direction of the left motor.
      *
      * You can call this function with an argument of \c true if the left motor
-     * of your Romi was not wired in the standard way and you want a
+     * of your Balboa was not wired in the standard way and you want a
      * positive speed argument to correspond to forward movement.
      *
      * \param flip If true, then positive motor speeds will correspond to the
@@ -29,7 +29,7 @@ class Romi32U4Motors
     /** \brief Flips the direction of the right motor.
      *
      * You can call this function with an argument of \c true if the right motor
-     * of your Romi was not wired in the standard way and you want a
+     * of your Balboa was not wired in the standard way and you want a
      * positive speed argument to correspond to forward movement.
      *
      * \param flip If true, then positive motor speeds will correspond to the
@@ -65,7 +65,7 @@ class Romi32U4Motors
      *
      * By default turbo mode is off.  When turbo mode is on, the range of speeds
      * accepted by the other functions in this library becomes -400 to 400
-     * (instead of -300 to 300).  Turning turbo mode on allows the Romi to move
+     * (instead of -300 to 300).  Turning turbo mode on allows the Balboa to move
      * faster but could decrease the lifetime of the motors.
      *
      * This function does not have any immediate effect on the speed of the

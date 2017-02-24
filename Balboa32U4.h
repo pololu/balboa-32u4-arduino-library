@@ -1,8 +1,8 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-/*! \file Romi32U4.h
+/*! \file Balboa32U4.h
  *
- * \brief Main header file for the Romi32U4 library.
+ * \brief Main header file for the Balboa32U4 library.
  *
  * This file includes all the other headers files provided by the library.
  */
@@ -14,11 +14,11 @@
 #endif
 
 #include <FastGPIO.h>
-#include <Romi32U4Buttons.h>
-#include <Romi32U4Buzzer.h>
-#include <Romi32U4Encoders.h>
-#include <Romi32U4LCD.h>
-#include <Romi32U4Motors.h>
+#include <Balboa32U4Buttons.h>
+#include <Balboa32U4Buzzer.h>
+#include <Balboa32U4Encoders.h>
+#include <Balboa32U4LCD.h>
+#include <Balboa32U4Motors.h>
 
 // TODO: servo support
 

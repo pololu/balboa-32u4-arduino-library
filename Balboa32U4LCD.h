@@ -1,6 +1,6 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-/*! \file Romi32U4LCD.h */
+/*! \file Balboa32U4LCD.h */
 
 #pragma once
 
@@ -8,11 +8,11 @@
 #include <FastGPIO.h>
 #include <USBPause.h>
 
-/*! \brief Writes data to the LCD on the Romi 32U4.
+/*! \brief Writes data to the LCD on the Balboa 32U4.
  *
  * This library is similar to the Arduino
  * [LiquidCrystal library](http://arduino.cc/en/Reference/LiquidCrystal),
- * but it has some extra features needed on the Romi 32U4:
+ * but it has some extra features needed on the Balboa 32U4:
  *
  * * This class disables USB interrupts temporarily while writing to the LCD so
  *   that the USB interrupts will not change the RXLED and TXLED pins, which
@@ -30,7 +30,7 @@
  * characters can be displayed, see the
  * [HD44780 datasheet](http://www.pololu.com/file/0J72/HD44780.pdf).
  */
-class Romi32U4LCD : public PololuHD44780Base
+class Balboa32U4LCD : public PololuHD44780Base
 {
     // Pin assignments
     static const uint8_t rs = 4, e = 11, db4 = 14, db5 = 17, db6 = 13, db7 = IO_D5;

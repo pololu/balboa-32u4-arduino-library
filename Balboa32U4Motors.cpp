@@ -1,6 +1,6 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-#include <Romi32U4Motors.h>
+#include <Balboa32U4Motors.h>
 #include <FastGPIO.h>
 #include <avr/io.h>
 
@@ -9,13 +9,13 @@
 #define DIR_L 16
 #define DIR_R 15
 
-bool Romi32U4Motors::flipLeft = false;
-bool Romi32U4Motors::flipRight = false;
+bool Balboa32U4Motors::flipLeft = false;
+bool Balboa32U4Motors::flipRight = false;
 
-int16_t Romi32U4Motors::maxSpeed = 300;
+int16_t Balboa32U4Motors::maxSpeed = 300;
 
 // initialize timer1 to generate the proper PWM outputs to the motor drivers
-void Romi32U4Motors::init2()
+void Balboa32U4Motors::init2()
 {
     FastGPIO::Pin<PWM_L>::setOutputLow();
     FastGPIO::Pin<PWM_R>::setOutputLow();
@@ -37,17 +37,17 @@ void Romi32U4Motors::init2()
     OCR1B = 0;
 }
 
-void Romi32U4Motors::flipLeftMotor(bool flip)
+void Balboa32U4Motors::flipLeftMotor(bool flip)
 {
     flipLeft = flip;
 }
 
-void Romi32U4Motors::flipRightMotor(bool flip)
+void Balboa32U4Motors::flipRightMotor(bool flip)
 {
     flipRight = flip;
 }
 
-void Romi32U4Motors::setLeftSpeed(int16_t speed)
+void Balboa32U4Motors::setLeftSpeed(int16_t speed)
 {
     init();
 
@@ -68,7 +68,7 @@ void Romi32U4Motors::setLeftSpeed(int16_t speed)
     FastGPIO::Pin<DIR_L>::setOutput(reverse ^ flipLeft);
 }
 
-void Romi32U4Motors::setRightSpeed(int16_t speed)
+void Balboa32U4Motors::setRightSpeed(int16_t speed)
 {
     init();
 
@@ -89,13 +89,13 @@ void Romi32U4Motors::setRightSpeed(int16_t speed)
     FastGPIO::Pin<DIR_R>::setOutput(reverse ^ flipRight);
 }
 
-void Romi32U4Motors::setSpeeds(int16_t leftSpeed, int16_t rightSpeed)
+void Balboa32U4Motors::setSpeeds(int16_t leftSpeed, int16_t rightSpeed)
 {
     setLeftSpeed(leftSpeed);
     setRightSpeed(rightSpeed);
 }
 
-void Romi32U4Motors::allowTurbo(bool turbo)
+void Balboa32U4Motors::allowTurbo(bool turbo)
 {
     maxSpeed = turbo ? 400 : 300;
 }

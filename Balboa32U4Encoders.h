@@ -1,14 +1,14 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-/*! \file Romi32U4Encoders.h */
+/*! \file Balboa32U4Encoders.h */
 
 #pragma once
 
 #include <stdint.h>
 
-/*! \brief Reads counts from the encoders on the Romi 32U4.
+/*! \brief Reads counts from the encoders on the Balboa 32U4.
  *
- * This class allows you to read counts from the encoders on the Romi 32U4,
+ * This class allows you to read counts from the encoders on the Balboa 32U4,
  * which lets you tell how much each motor has turned and in what direction.
  *
  * The encoders are monitored in the background using interrupts, so your code
@@ -23,12 +23,12 @@
  * will be a compile-time conflict with any other code that defines an ISR for
  * an external interrupt directly instead of using attachInterrupt().
  *
- * The standard Romi motors have a gear ratio of 3952:33 (approximately 120:1).
- * The standard Romi encoders give 12 counts per revolution.  Therefore, one
- * revolution of a Romi wheel corresponds to 12*3952/33 (approximately 1437.09)
+ * The standard Balboa motors have a gear ratio of 3952:33 (approximately 120:1).
+ * The standard Balboa encoders give 12 counts per revolution.  Therefore, one
+ * revolution of a Balboa wheel corresponds to 12*3952/33 (approximately 1437.09)
  * encoder counts as returned by this library.
  */
-class Romi32U4Encoders
+class Balboa32U4Encoders
 {
 
 public:
@@ -49,7 +49,7 @@ public:
 
     /*! Returns the number of counts that have been detected from the left-side
      * encoder.  These counts start at 0.  Positive counts correspond to forward
-     * movement of the left side of the Romi, while negative counts correspond
+     * movement of the left side of the Balboa, while negative counts correspond
      * to backwards movement.
      *
      * The count is returned as a signed 16-bit integer.  When the count goes

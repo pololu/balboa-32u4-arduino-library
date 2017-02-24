@@ -1,15 +1,15 @@
 // Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
 
-/*! \file Romi32U4Buzzer.h */
+/*! \file Balboa32U4Buzzer.h */
 
 #pragma once
 
 #include <PololuBuzzer.h>
 
-/*! \brief Plays beeps and music on the buzzer on the Romi 32U4.
+/*! \brief Plays beeps and music on the buzzer on the Balboa 32U4.
  *
  * This class uses Timer 4 and pin 6 (PD7/OC4D) to play beeps and melodies on
- * the Romi 32U4 buzzer.
+ * the Balboa 32U4 buzzer.
  *
  * Note durations are timed using a timer overflow interrupt
  * (`TIMER4_OVF`), which will briefly interrupt execution of your
@@ -20,10 +20,10 @@
  * (perhaps several hundred microseconds) every time it starts a new note. It is
  * important to take this into account when writing timing-critical code.
  */
-class Romi32U4Buzzer : public PololuBuzzer
+class Balboa32U4Buzzer : public PololuBuzzer
 {
     // This is a trivial subclass of PololuBuzzer; it exists because we wanted
-    // the Romi32U4 class names to be consistent and we didn't just use a typedef
+    // the Balboa32U4 class names to be consistent and we didn't just use a typedef
     // to define it because that would make the Doxygen documentation harder to
     // understand.
 };
