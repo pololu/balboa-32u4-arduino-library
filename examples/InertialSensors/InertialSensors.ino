@@ -1,6 +1,6 @@
 // This example reads the raw values from the LSM6DS33
-// accelerometer and gyro and prints those raw values to the
-// serial monitor.
+// accelerometer and gyro and and the LIS3MDL magnetometer on the
+// Romi 32U4, and prints those raw values to the serial monitor.
 //
 // The accelerometer readings can be converted to units of g
 // using the conversion factors specified in the "Mechanical
@@ -15,21 +15,41 @@
 // conversion factor is 35 mdps/LSB.  A raw reading of 2571
 // would correspond to 90 dps.
 //
-// To run this sketch, you will need to install the LSM6 library:
+// The magnetometer readings are more difficult to interpret and
+// will usually require calibration.
+//
+// To run this sketch, you will need to install the LSM6 and
+// LIS3MDL libraries:
 //
 // https://github.com/pololu/lsm6-arduino
+// https://github.com/pololu/lis3mdl-arduino
 
 #include <Wire.h>
 #include <Romi32U4.h>
 #include <LSM6.h>
+#include <LIS3MDL.h>
 
 LSM6 imu;
+LIS3MDL mag;
 
 char report[120];
 
 void setup()
 {
   Wire.begin();
+
+  if (!mag.init())
+  {
+    // Failed to detect the LIS3MDL.
+    ledRed(1);
+    while(1)
+    {
+      Serial.println(F("Failed to detect the LIS3MDL."));
+      delay(100);
+    }
+  }
+
+  mag.enableDefault();
 
   if (!imu.init())
   {
@@ -56,10 +76,12 @@ void setup()
 void loop()
 {
   imu.read();
+  mag.read();
 
   snprintf_P(report, sizeof(report),
-    PSTR("A: %6d %6d %6d    G: %6d %6d %6d"),
+    PSTR("A: %6d %6d %6d    M: %6d %6d %6d    G: %6d %6d %6d"),
     imu.a.x, imu.a.y, imu.a.z,
+    mag.m.x, mag.m.y, mag.m.z,
     imu.g.x, imu.g.y, imu.g.z);
   Serial.println(report);
 

@@ -8,13 +8,16 @@
 // connected to the Romi 32U4.  If you cannot see any text on the
 // LCD, try rotating the contrast potentiometer.
 //
-// To run this sketch, you will need to install the LSM6 library:
+// To run this sketch, you will need to install the LSM6 and
+// LIS3MDL libraries:
 //
 // https://github.com/pololu/lsm6-arduino
+// https://github.com/pololu/lis3mdl-arduino
 
 #include <Wire.h>
 #include <Romi32U4.h>
 #include <LSM6.h>
+#include <LIS3MDL.h>
 
 Romi32U4LCD lcd;
 Romi32U4Buzzer buzzer;
@@ -22,6 +25,7 @@ Romi32U4ButtonA buttonA;
 Romi32U4ButtonB buttonB;
 Romi32U4ButtonC buttonC;
 LSM6 imu;
+LIS3MDL mag;
 Romi32U4Motors motors;
 Romi32U4Encoders encoders;
 
@@ -309,6 +313,8 @@ void initInertialSensors()
   Wire.begin();
   imu.init();
   imu.enableDefault();
+  mag.init();
+  mag.enableDefault();
 
   // Set the gyro full scale to 1000 dps because the default
   // value is too low, and leave the other settings the same.
@@ -372,6 +378,30 @@ void inertialDemo()
     printLargestAxis(imu.g.x, imu.g.y, imu.g.z, 2000);
     lcd.gotoXY(6, 1);
     printLargestAxis(imu.a.x, imu.a.y, imu.a.z, 200);
+  }
+}
+
+// Print the raw readings from the X and Y axes on the
+// magnetometer.  (The magnetometer also has a Z axis which we do
+// not display because it would not fit and is less likely to be
+// useful.)
+void magnetometerDemo()
+{
+  displayBackArrow();
+
+  while (buttonMonitor() != 'B')
+  {
+    mag.read();
+
+    char buffer[7];
+
+    sprintf(buffer, "%6d", mag.m.x);
+    lcd.gotoXY(2, 0);
+    lcd.print(buffer);
+
+    sprintf(buffer, "%6d", mag.m.y);
+    lcd.gotoXY(2, 1);
+    lcd.print(buffer);
   }
 }
 
@@ -603,12 +633,13 @@ void powerDemo()
 Menu::Item mainMenuItems[] = {
   { "LEDs", ledDemo },
   { "Inertial", inertialDemo },
+  { "Magnet", magnetometerDemo },
   { "Motors", motorDemo },
   { "Encoders", encoderDemo },
   { "Music", musicDemo },
   { "Power", powerDemo },
 };
-Menu mainMenu(mainMenuItems, 6);
+Menu mainMenu(mainMenuItems, 7);
 
 // This function watches for button presses.  If a button is
 // pressed, it beeps a corresponding beep and it returns 'A',
