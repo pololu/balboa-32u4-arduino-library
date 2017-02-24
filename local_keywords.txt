@@ -1,0 +1,32 @@
+Romi32U4LCD	KEYWORD1
+
+ROMI_32U4_BUTTON_A	LITERAL1
+ROMI_32U4_BUTTON_B	LITERAL1
+ROMI_32U4_BUTTON_C	LITERAL1
+Romi32U4ButtonA	KEYWORD1
+Romi32U4ButtonB	KEYWORD1
+Romi32U4ButtonC	KEYWORD1
+
+Romi32U4Buzzer	KEYWORD1
+
+Romi32U4Motors	KEYWORD1
+flipLeftMotor	KEYWORD2
+flipRightMotor	KEYWORD2
+setLeftSpeed	KEYWORD2
+setRightSpeed	KEYWORD2
+setSpeeds	KEYWORD2
+
+Romi32U4Encoders	KEYWORD1
+init	KEYWORD2
+getCountsLeft	KEYWORD2
+getCountsRight	KEYWORD2
+getCountsAndResetLeft	KEYWORD2
+getCountsAndResetRight	KEYWORD2
+checkErrorLeft	KEYWORD2
+checkErrorRight	KEYWORD2
+
+ledRed	KEYWORD2
+ledGreen	KEYWORD2
+ledYellow	KEYWORD2
+usbPowerPresent	KEYWORD2
+readBatteryMillivolts	KEYWORD2
