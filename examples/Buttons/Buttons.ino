@@ -1,14 +1,14 @@
 // This example demonstrates three different ways to
-// interface with a user pushbutton on the Romi 32U4.
+// interface with a user pushbutton on the Balboa 32U4.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
-// These objects provide access to the Romi 32U4's
+// These objects provide access to the Balboa 32U4's
 // on-board buttons.
-Romi32U4ButtonA buttonA;
-Romi32U4ButtonB buttonB;
-Romi32U4ButtonC buttonC;
-Romi32U4LCD lcd;
+Balboa32U4ButtonA buttonA;
+Balboa32U4ButtonB buttonB;
+Balboa32U4ButtonC buttonC;
+Balboa32U4LCD lcd;
 
 void setup()
 {

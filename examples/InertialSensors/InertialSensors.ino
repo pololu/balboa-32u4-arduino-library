@@ -1,6 +1,7 @@
 // This example reads the raw values from the LSM6DS33
 // accelerometer and gyro and and the LIS3MDL magnetometer on the
-// Romi 32U4, and prints those raw values to the serial monitor.
+// Balboa 32U4, and prints those raw values to the serial
+// monitor.
 //
 // The accelerometer readings can be converted to units of g
 // using the conversion factors specified in the "Mechanical
@@ -25,7 +26,7 @@
 // https://github.com/pololu/lis3mdl-arduino
 
 #include <Wire.h>
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 #include <LSM6.h>
 #include <LIS3MDL.h>
 

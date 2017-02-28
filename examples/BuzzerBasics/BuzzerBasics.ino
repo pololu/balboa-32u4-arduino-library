@@ -1,5 +1,5 @@
 // This example shows how to make sounds with the buzzer on the
-// Romi 32U4.
+// Balboa 32U4.
 //
 // This example demonstrates the use of the playFrequency(),
 // playNote(), and playFromProgramSpace() functions, which play
@@ -11,9 +11,9 @@
 // to stop the buzzer, and it shows how to use the isPlaying()
 // function to tell whether the buzzer is still playing or not.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
-Romi32U4Buzzer buzzer;
+Balboa32U4Buzzer buzzer;
 
 // Store this song in program space using the PROGMEM macro.
 // Later we will play it directly from program space, bypassing

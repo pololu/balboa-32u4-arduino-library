@@ -1,11 +1,11 @@
-// This demo program shows many features of the Romi 32U4.
+// This demo program shows many features of the Balboa 32U4.
 //
 // It uses the buttons, LCD, and buzzer to provide a user
 // interface.  It presents a menu to the user that lets the user
 // select from several different demos.
 //
 // To use this demo program, you will need to have the LCD
-// connected to the Romi 32U4.  If you cannot see any text on the
+// connected to the Balboa 32U4.  If you cannot see any text on the
 // LCD, try rotating the contrast potentiometer.
 //
 // To run this sketch, you will need to install the LSM6 and
@@ -15,19 +15,19 @@
 // https://github.com/pololu/lis3mdl-arduino
 
 #include <Wire.h>
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 #include <LSM6.h>
 #include <LIS3MDL.h>
 
-Romi32U4LCD lcd;
-Romi32U4Buzzer buzzer;
-Romi32U4ButtonA buttonA;
-Romi32U4ButtonB buttonB;
-Romi32U4ButtonC buttonC;
+Balboa32U4LCD lcd;
+Balboa32U4Buzzer buzzer;
+Balboa32U4ButtonA buttonA;
+Balboa32U4ButtonB buttonB;
+Balboa32U4ButtonC buttonC;
 LSM6 imu;
 LIS3MDL mag;
-Romi32U4Motors motors;
-Romi32U4Encoders encoders;
+Balboa32U4Motors motors;
+Balboa32U4Encoders encoders;
 
 char buttonMonitor();
 
@@ -360,7 +360,7 @@ void printLargestAxis(int16_t x, int16_t y, int16_t z, uint16_t threshold)
 // by the gyro and the up direction based on the
 // accelerometer's measurement of gravitational acceleration
 // (assuming gravity is the dominant force acting on the
-// Romi).
+// Balboa).
 void inertialDemo()
 {
   displayBackArrow();
@@ -698,7 +698,7 @@ void setup()
   ledYellow(1);
 
   lcd.clear();
-  lcd.print(F("  Romi"));
+  lcd.print(F(" Balboa"));
   lcd.gotoXY(2, 1);
   lcd.print(F("32U4"));
 

@@ -1,8 +1,8 @@
-// This program shows how to read the encoders on the Romi 32U4.
+// This program shows how to read the encoders on the Balboa 32U4.
 // The encoders can tell you how far, and in which direction each
 // motor has turned.
 //
-// You can press button A on the Romi to drive both motors
+// You can press button A on the Balboa to drive both motors
 // forward at full speed.  You can press button C to drive both
 // motors in reverse at full speed.
 //
@@ -20,14 +20,14 @@
 // third and fourth numbers represent errors from the left and
 // right encoders, respectively.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
-Romi32U4Encoders encoders;
-Romi32U4LCD lcd;
-Romi32U4Buzzer buzzer;
-Romi32U4Motors motors;
-Romi32U4ButtonA buttonA;
-Romi32U4ButtonC buttonC;
+Balboa32U4Encoders encoders;
+Balboa32U4LCD lcd;
+Balboa32U4Buzzer buzzer;
+Balboa32U4Motors motors;
+Balboa32U4ButtonA buttonA;
+Balboa32U4ButtonC buttonC;
 
 const char encoderErrorLeft[] PROGMEM = "!<c2";
 const char encoderErrorRight[] PROGMEM = "!<e2";

@@ -1,10 +1,10 @@
-// This example demonstrates basic use of the Romi 32U4 LCD.  It
+// This example demonstrates basic use of the Balboa 32U4 LCD.  It
 // prints the word "hi" on the first line of the LCD and prints
 // the number 1234 on the second line.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
-Romi32U4LCD lcd;
+Balboa32U4LCD lcd;
 
 void setup()
 {

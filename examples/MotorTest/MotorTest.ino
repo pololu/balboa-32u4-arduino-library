@@ -1,12 +1,12 @@
-// This example drives each motor on the Romi forward, then
+// This example drives each motor on the Balboa forward, then
 // backward.  The yellow user LED is on when a motor should be
 // running forward and off when a motor should be running
 // backward.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
-Romi32U4Motors motors;
-Romi32U4ButtonA buttonA;
+Balboa32U4Motors motors;
+Balboa32U4ButtonA buttonA;
 
 void setup()
 {

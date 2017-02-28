@@ -1,7 +1,7 @@
 // This example shows how to blink the three user LEDs on the
-// Romi 32U4.
+// Balboa 32U4.
 
-#include <Romi32U4.h>
+#include <Balboa32U4.h>
 
 void setup()
 {
