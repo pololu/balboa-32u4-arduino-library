@@ -38,6 +38,7 @@ void setup()
   // motors.flipLeftMotor(true);
   // motors.flipRightMotor(true);
 
+  ledYellow(0);
   ledRed(1);
   balanceSetup();
   ledRed(0);
