@@ -114,7 +114,7 @@ void balanceDoDriveTicks() {
 
 void balanceSetup()
 {
-  // initialize IMU
+  // Initialize IMU.
   Wire.begin();
   if (!imu.init())
   {
@@ -127,10 +127,10 @@ void balanceSetup()
   imu.enableDefault();
   imu.writeReg(LSM6::CTRL2_G, 0b01011000); // 208 Hz, 1000 deg/s
 
-  // wait for IMU readings to stabilize
+  // Wait for IMU readings to stabilize.
   delay(1000);
 
-  // calibrate the gyro
+  // Calibrate the gyro.
   int32_t total = 0;
   for (int i = 0; i < CALIBRATION_ITERATIONS; i++)
   {
@@ -160,7 +160,7 @@ void balanceUpdate()
   static uint16_t lastMillis;
   uint16_t ms = millis();
 
-  // lock our balancing updates to 100 Hz
+  // Perform the balance updates at 100 Hz.
   if(ms - lastMillis < UPDATE_TIME_MS) { return; }
   balanceUpdateDelayedStatus = ms - lastMillis > UPDATE_TIME_MS + 1;
   lastMillis = ms;

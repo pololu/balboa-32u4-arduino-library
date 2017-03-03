@@ -1,5 +1,13 @@
 // This example shows how to make your Balboa balance on its two
-// wheels and drive around.
+// wheels and drive around while balancing.
+//
+// To use this demo, place your robot on the ground with the
+// circuit board facing up, and then turn it on.  Be careful to
+// not move the robot for a few seconds after powering it on,
+// because that is when the gyro is calibrated.  During the gyro
+// calibration, the red LED is lit.  After the red LED turns off,
+// press the A button.  The robot will uses its motors to kick up
+// and then start balancing.
 //
 // This demo is tuned for the 50:1 high-power gearmotor with
 // carbon brushes and 45:21 plastic gears; you will need to
@@ -61,7 +69,7 @@ void driveAround()
     left = 25;
     right = 15;
   }
-  else if(time < 4096+1900)
+  else if(time < 4096 + 1900)
   {
     left = 20;
     right = 20;
@@ -81,10 +89,10 @@ void standUp()
   buzzer.play("!frfr");
   while(buzzer.isPlaying());
   buzzer.play(">c2");
-  motors.setSpeeds(-MOTOR_SPEED_LIMIT,-MOTOR_SPEED_LIMIT);
+  motors.setSpeeds(-MOTOR_SPEED_LIMIT, -MOTOR_SPEED_LIMIT);
   delay(400);
   motors.setSpeeds(150,150);
-  for(uint8_t i=0;i<20;i++)
+  for(uint8_t i = 0; i < 20; i++)
   {
     delay(UPDATE_TIME_MS);
     balanceUpdateSensors();
@@ -112,6 +120,7 @@ void loop()
   else
   {
     buzzer.stopPlaying();
+
     if(buttonA.getSingleDebouncedPress())
     {
       standUp();
@@ -121,24 +130,27 @@ void loop()
   // Illuminate the red LED if the last full update was too slow.
   ledRed(balanceUpdateDelayed());
 
-  // Display feedback on the yellow and green LEDs.  This is useful
-  // for calibrating ANGLE_RATE_RATIO: if the robot is released from
-  // nearly vertical and falls onto its bottom, the green LED should
-  // remain lit the entire time.  If it is tilted beyond vertical and
-  // given a push to fall back to its bottom side, the yellow LED
-  // should remain lit until it hits the ground.  In practice, it is
-  // hard to achieve both of these perfectly, but if you can get
-  // close, your constant will probably be good enough for balancing.
+  // Display feedback on the yellow and green LEDs.  This is
+  // useful for calibrating ANGLE_RATE_RATIO: if the robot is
+  // released from nearly vertical and falls onto its bottom, the
+  // green LED should remain lit the entire time.  If it is
+  // tilted beyond vertical and given a push to fall back to its
+  // bottom side, the yellow LED should remain lit until it hits
+  // the ground.  In practice, it is hard to achieve both of
+  // these perfectly, but if you can get close, your constant
+  // will probably be good enough for balancing.
   int32_t diff = angleRate * ANGLE_RATE_RATIO - angle;
   if(diff > 0)
   {
-    // On the top side, or pushed from the top side over to the bottom.
+    // On the top side, or pushed from the top side over to the
+    // bottom.
     ledYellow(1);
     ledGreen(0);
   }
   else
   {
-    // On the bottom side, or pushed from the bottom over to the top.
+    // On the bottom side, or pushed from the bottom over to the
+    // top.
     ledYellow(0);
     ledGreen(1);
   }
