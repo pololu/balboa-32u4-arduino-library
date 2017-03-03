@@ -19,17 +19,18 @@ const int16_t MOTOR_SPEED_LIMIT = 400;
 // This constant relates the angle to its rate of change for a
 // robot that is falling from a nearly-vertical position or
 // rising up to that position.  The relationship is nearly
-// linear; if you have the 80mm wheels it should be about 140 -
-// the angle is ~140 times its rate, so for example when it falls
-// to 90 degrees it will be moving at 90,000/200 = 450 deg/s.
-// See the end of balancerExample.ino for one way to calibrate
-// this value.
+// linear.  For example, if you have the 80mm wheels it should be
+// about 140, which means that the angle in millidegrees is ~140
+// times its rate of change in degrees per second; when the robot
+// has fallen by 90 degrees it will be moving at about
+// 90,000/140 = 642 deg/s.  See the end of Balancer.ino for one
+// way to calibrate this value.
 const int16_t ANGLE_RATE_RATIO = 140;
 
 // The following three constants define a PID-like algorithm for
 // balancing.  Each one determines how much the motors will
 // respond to the corresponding variable being off from zero.
-// See the code in balance.cpp for exactly how they are used.  To
+// See the code in Balance.cpp for exactly how they are used.  To
 // get it balancing from scratch, start with them all at zero and
 // adjust them as follows:
 
@@ -47,8 +48,8 @@ const int16_t ANGLE_RATE_RATIO = 140;
 // over.  That's where the next constants come in.
 const int16_t ANGLE_RESPONSE = 11;
 
-// DISTANCE_RESPONSE determines how much it resists being moved
-// away from its starting point.  Counterintuitively, this
+// DISTANCE_RESPONSE determines how much the robot resists being
+// moved away from its starting point.  Counterintuitively, this
 // constant is positive: to move forwards, the robot actually has
 // to first roll its wheels backwards, so that it can *fall*
 // forwards.  When this constant is adjusted properly, the robot
@@ -64,8 +65,6 @@ const int16_t SPEED_RESPONSE = 3300;
 
 // The balancing code is all based on a 100 Hz update rate; if
 // you change this, you will have to adjust many other things.
-// If the algorithm falls more than 1 ms behind, it will turn on
-// the red LED to indicate a potential problem.
 const uint8_t UPDATE_TIME_MS = 10;
 
 // Take 100 measurements initially to calibrate the gyro.

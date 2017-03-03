@@ -14,8 +14,8 @@
 // the balancing position.
 //
 // This demo is tuned for the 50:1 high-power gearmotor with
-// carbon brushes and 45:21 plastic gears; you will need to
-// adjust the parameters in Balance.h for your robot.
+// carbon brushes, 45:21 plastic gears, and 80mm wheels; you will
+// need to adjust the parameters in Balance.h for your robot.
 //
 // After you have gotten the robot balance well, you can
 // uncomment some lines in loop() to make it drive around and
