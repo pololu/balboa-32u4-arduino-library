@@ -24,9 +24,39 @@ bool balanceUpdateDelayed()
   return balanceUpdateDelayedStatus;
 }
 
+void balanceSetup()
+{
+  // Initialize IMU.
+  Wire.begin();
+  if (!imu.init())
+  {
+    while(true)
+    {
+      Serial.println("Failed to detect and initialize IMU!");
+      delay(200);
+    }
+  }
+  imu.enableDefault();
+  imu.writeReg(LSM6::CTRL2_G, 0b01011000); // 208 Hz, 1000 deg/s
+
+  // Wait for IMU readings to stabilize.
+  delay(1000);
+
+  // Calibrate the gyro.
+  int32_t total = 0;
+  for (int i = 0; i < CALIBRATION_ITERATIONS; i++)
+  {
+    imu.read();
+    total += imu.g.y;
+    delay(1);
+  }
+
+  gYZero = total / CALIBRATION_ITERATIONS;
+}
+
 void balance()
 {
-  // drift toward angle=0 with timescale ~10s
+  // Drift toward angle=0 with timescale ~10s.
   angle = angle * 999 / 1000;
 
   int32_t diff = angleRate * ANGLE_RATE_RATIO + angle;
@@ -54,7 +84,7 @@ void balance()
 
 void lyingDown()
 {
-  // reset things so it doesn't go crazy
+  // Reset things so it doesn't go crazy.
   motorSpeed = 0;
   distanceLeft = 0;
   distanceRight = 0;
@@ -62,7 +92,7 @@ void lyingDown()
 
   if (angleRate > -2 && angleRate < 2)
   {
-    // it's really calm, so we know the angles
+    // It's really calm, so we know the angles.
     if(imu.a.z > 0)
     {
       angle = 110000;
@@ -78,7 +108,7 @@ void lyingDown()
 
 void integrateGyro()
 {
-  // convert from full-scale 1000 deg/s to deg/s
+  // Convert from full-scale 1000 deg/s to deg/s.
   angleRate = (imu.g.y - gYZero) / 29;
 
   angle += angleRate * UPDATE_TIME_MS;
@@ -110,36 +140,6 @@ void balanceDoDriveTicks() {
   distanceRight += driveRight;
   speedLeft += driveLeft;
   speedRight += driveRight;
-}
-
-void balanceSetup()
-{
-  // Initialize IMU.
-  Wire.begin();
-  if (!imu.init())
-  {
-    while(true)
-    {
-      Serial.println("Failed to detect and initialize IMU!");
-      delay(200);
-    }
-  }
-  imu.enableDefault();
-  imu.writeReg(LSM6::CTRL2_G, 0b01011000); // 208 Hz, 1000 deg/s
-
-  // Wait for IMU readings to stabilize.
-  delay(1000);
-
-  // Calibrate the gyro.
-  int32_t total = 0;
-  for (int i = 0; i < CALIBRATION_ITERATIONS; i++)
-  {
-    imu.read();
-    total += imu.g.y;
-    delay(1);
-  }
-
-  gYZero = total / CALIBRATION_ITERATIONS;
 }
 
 void balanceResetEncoders()

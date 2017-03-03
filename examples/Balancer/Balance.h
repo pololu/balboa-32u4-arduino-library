@@ -80,6 +80,12 @@ extern LSM6 imu;
 extern Balboa32U4Motors motors;
 extern Balboa32U4Encoders encoders;
 
+// Call this in your setup() to initialize and calibrate the IMU.
+void balanceSetup();
+
+// Call this in loop() to run the full balancing algorithm.
+void balanceUpdate();
+
 // Call this function to set a driving speed in ticks/ms.  The
 // way it works is that every update cycle we adjust the robot's
 // encoder measurements, which will cause it to drive in the
@@ -87,15 +93,10 @@ extern Balboa32U4Encoders encoders;
 // will result in a turn.
 void balanceDrive(int16_t left, int16_t right);
 
-// Call this in your setup() to initialize and calibrate the IMU.
-void balanceSetup();
-
-// Call this in loop() to run the full balancing algorithm.
-void balanceUpdate();
-
 // Returns true if (according to the balancing algorithm) the
 // robot is trying to balance.  When it falls down it shuts off
-// the motors, and this function will return false
+// the motors, and this function will return false.  If you pick
+// the robot up, this function will start returning true again.
 bool isBalancing();
 
 // Returns true if the last update cycle was delayed to more than
