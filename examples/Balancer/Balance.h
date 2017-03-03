@@ -91,7 +91,7 @@ void balanceUpdate();
 // encoder measurements, which will cause it to drive in the
 // corresponding direction.  Differing values for left and right
 // will result in a turn.
-void balanceDrive(int16_t left, int16_t right);
+void balanceDrive(int16_t leftSpeed, int16_t rightSpeed);
 
 // Returns true if (according to the balancing algorithm) the
 // robot is trying to balance.  When it falls down it shuts off

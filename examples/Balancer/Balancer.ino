@@ -62,29 +62,29 @@ void playSong()
 void driveAround()
 {
   uint16_t time = millis() % 8192;
-  uint16_t left, right;
+  uint16_t leftSpeed, rightSpeed;
   if (time < 1900)
   {
-    left = 20;
-    right = 20;
+    leftSpeed = 20;
+    rightSpeed = 20;
   }
   else if (time < 4096)
   {
-    left = 25;
-    right = 15;
+    leftSpeed = 25;
+    rightSpeed = 15;
   }
   else if (time < 4096 + 1900)
   {
-    left = 20;
-    right = 20;
+    leftSpeed = 20;
+    rightSpeed = 20;
   }
   else
   {
-    left = 15;
-    right = 25;
+    leftSpeed = 15;
+    rightSpeed = 25;
   }
 
-  balanceDrive(left, right);
+  balanceDrive(leftSpeed, rightSpeed);
 }
 
 void standUp()

@@ -129,10 +129,10 @@ void integrateEncoders()
   lastCountsRight = countsRight;
 }
 
-void balanceDrive(int16_t left, int16_t right)
+void balanceDrive(int16_t leftSpeed, int16_t rightSpeed)
 {
-  driveLeft = left;
-  driveRight = right;
+  driveLeft = leftSpeed;
+  driveRight = rightSpeed;
 }
 
 void balanceDoDriveTicks()
