@@ -137,10 +137,10 @@ void balanceDrive(int16_t leftSpeed, int16_t rightSpeed)
 
 void balanceDoDriveTicks()
 {
-  distanceLeft += driveLeft;
-  distanceRight += driveRight;
-  speedLeft += driveLeft;
-  speedRight += driveRight;
+  distanceLeft -= driveLeft;
+  distanceRight -= driveRight;
+  speedLeft -= driveLeft;
+  speedRight -= driveRight;
 }
 
 void balanceResetEncoders()
