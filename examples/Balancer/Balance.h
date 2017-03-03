@@ -14,7 +14,10 @@ const int16_t GEAR_RATIO = 111;
 // ratio is lower than what we used, or if you are testing
 // changes to the code, you might want to reduce it to prevent
 // your robot from zooming away when things go wrong.
-const int16_t MOTOR_SPEED_LIMIT = 400;
+//
+// If you want to use speeds faster than 300, you should add
+// the line "motors.allowTurbo(true);" to setup().
+const int16_t MOTOR_SPEED_LIMIT = 300;
 
 // This constant relates the angle to its rate of change for a
 // robot that is falling from a nearly-vertical position or
