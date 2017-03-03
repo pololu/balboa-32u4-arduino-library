@@ -53,7 +53,7 @@ const char song[] PROGMEM =
 
 void playSong()
 {
-  if(!buzzer.isPlaying())
+  if (!buzzer.isPlaying())
   {
     buzzer.playFromProgramSpace(song);
   }
@@ -63,17 +63,17 @@ void driveAround()
 {
   uint16_t time = millis() % 8192;
   uint16_t left, right;
-  if(time < 1900)
+  if (time < 1900)
   {
     left = 20;
     right = 20;
   }
-  else if(time < 4096)
+  else if (time < 4096)
   {
     left = 25;
     right = 15;
   }
-  else if(time < 4096 + 1900)
+  else if (time < 4096 + 1900)
   {
     left = 20;
     right = 20;
@@ -91,12 +91,12 @@ void standUp()
 {
   motors.setSpeeds(0,0);
   buzzer.play("!frfr");
-  while(buzzer.isPlaying());
+  while (buzzer.isPlaying());
   buzzer.play(">c2");
   motors.setSpeeds(-MOTOR_SPEED_LIMIT, -MOTOR_SPEED_LIMIT);
   delay(400);
   motors.setSpeeds(150,150);
-  for(uint8_t i = 0; i < 20; i++)
+  for (uint8_t i = 0; i < 20; i++)
   {
     delay(UPDATE_TIME_MS);
     balanceUpdateSensors();
@@ -113,7 +113,7 @@ void loop()
 {
   balanceUpdate();
 
-  if(isBalancing())
+  if (isBalancing())
   {
     // Once you have it balancing well, uncomment these lines for
     // something fun.
@@ -125,7 +125,7 @@ void loop()
   {
     buzzer.stopPlaying();
 
-    if(buttonA.getSingleDebouncedPress())
+    if (buttonA.getSingleDebouncedPress())
     {
       standUp();
     }
@@ -144,7 +144,7 @@ void loop()
   // these perfectly, but if you can get close, your constant
   // will probably be good enough for balancing.
   int32_t diff = angleRate * ANGLE_RATE_RATIO - angle;
-  if(diff > 0)
+  if (diff > 0)
   {
     // On the top side, or pushed from the top side over to the
     // bottom.

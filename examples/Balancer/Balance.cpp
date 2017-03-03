@@ -93,7 +93,7 @@ void lyingDown()
   if (angleRate > -2 && angleRate < 2)
   {
     // It's really calm, so we know the angles.
-    if(imu.a.z > 0)
+    if (imu.a.z > 0)
     {
       angle = 110000;
     }
@@ -135,7 +135,8 @@ void balanceDrive(int16_t left, int16_t right)
   driveRight = right;
 }
 
-void balanceDoDriveTicks() {
+void balanceDoDriveTicks()
+{
   distanceLeft += driveLeft;
   distanceRight += driveRight;
   speedLeft += driveLeft;
@@ -161,14 +162,14 @@ void balanceUpdate()
   uint16_t ms = millis();
 
   // Perform the balance updates at 100 Hz.
-  if(ms - lastMillis < UPDATE_TIME_MS) { return; }
+  if ((uint16_t)(ms - lastMillis) < UPDATE_TIME_MS) { return; }
   balanceUpdateDelayedStatus = ms - lastMillis > UPDATE_TIME_MS + 1;
   lastMillis = ms;
 
   balanceUpdateSensors();
   balanceDoDriveTicks();
 
-  if(imu.a.x < 0)
+  if (imu.a.x < 0)
   {
     lyingDown();
     isBalancingStatus = false;
