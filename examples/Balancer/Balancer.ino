@@ -1,13 +1,17 @@
-// This example shows how to make your Balboa balance on its two
+// This example shows how to make a Balboa balance on its two
 // wheels and drive around while balancing.
 //
-// To use this demo, place your robot on the ground with the
+// To use this demo, place the robot on the ground with the
 // circuit board facing up, and then turn it on.  Be careful to
 // not move the robot for a few seconds after powering it on,
 // because that is when the gyro is calibrated.  During the gyro
 // calibration, the red LED is lit.  After the red LED turns off,
-// press the A button.  The robot will uses its motors to kick up
-// and then start balancing.
+// turn the robot so that it is standing up.  It will detect that
+// you have turned it and start balancing.
+//
+// Alternatively, you can press the A button while the robot is
+// lying down and it will try to use its motors to kick up into
+// the balancing position.
 //
 // This demo is tuned for the 50:1 high-power gearmotor with
 // carbon brushes and 45:21 plastic gears; you will need to
