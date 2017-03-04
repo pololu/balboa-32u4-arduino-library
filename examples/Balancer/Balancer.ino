@@ -90,13 +90,13 @@ void driveAround()
 
 void standUp()
 {
-  motors.setSpeeds(0,0);
+  motors.setSpeeds(0, 0);
   buzzer.play("!frfr");
   while (buzzer.isPlaying());
   buzzer.play(">c2");
   motors.setSpeeds(-MOTOR_SPEED_LIMIT, -MOTOR_SPEED_LIMIT);
   delay(400);
-  motors.setSpeeds(150,150);
+  motors.setSpeeds(150, 150);
   for (uint8_t i = 0; i < 20; i++)
   {
     delay(UPDATE_TIME_MS);
