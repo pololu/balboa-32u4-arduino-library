@@ -50,7 +50,7 @@ const char song[] PROGMEM =
   "a-r gr g-gg-f er e-r d4 e-4"
   "gr msd8d8ml d-4d4"
   "l32efg-gl8r msd8d8ml d-4d4"
-  "cd-de-efg-g l32fg-ga-l8r gr g-4 gr";
+  "<bcd-d e-efg- ga-ab- a4 gr";
 
 void playSong()
 {
