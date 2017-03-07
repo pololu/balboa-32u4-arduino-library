@@ -1,15 +1,13 @@
 # Balba32U4 library
 
 Version: 1.0.0<br/>
-Release date: 2017-03-03<br/>
+Release date: 2017-03-07<br/>
 [![Build Status](https://travis-ci.org/pololu/balboa-32u4-arduino-library.svg?branch=master)](https://travis-ci.org/pololu/balboa-32u4-arduino-library)<br/>
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
 
-This is a C++ library for the Arduino IDE that helps access the on-board hardware of the Balboa 32U4 Control Board.
-
-The Balboa 32U4 Control Board turns the Balboa chassis into a programmable robot based on the Arduino-compatible ATmega32U4 MCU.  It has an integrated AVR ATmega32U4 microcontroller, motor drivers, encoders, buzzer, buttons, an LSM6DS33 accelerometer and gyro, and an LIS3MDL compass.
+This is a C++ library for the Arduino IDE that helps access the on-board hardware of the Balboa 32U4 control board, which part of the [Balboa balancing robot](https://www.pololu.com/category/210/balboa-robot-and-acessories).  The board is based on the Arduino-compatible ATmega32U4 MCU and integrates motor drivers, encoders, buzzer, buttons, an LSM6DS33 accelerometer and gyro, and an LIS3MDL compass.
 
 This library does not include code for accessing the LSM6DS33 or LIS3MDL.  If you want to access those sensors, you should install the separate [LSM6](https://github.com/pololu/lsm6-arduino) and [LIS3MDL](https://github.com/pololu/lis3mdl-arduino) libraries.
 
