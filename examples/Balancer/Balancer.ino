@@ -91,9 +91,11 @@ void driveAround()
 void standUp()
 {
   motors.setSpeeds(0, 0);
-  buzzer.play("!frfr");
+  buzzer.play("!>grms>g16>g16>g2");
+  ledGreen(1);
+  ledRed(1);
+  ledYellow(1);
   while (buzzer.isPlaying());
-  buzzer.play(">c2");
   motors.setSpeeds(-MOTOR_SPEED_LIMIT, -MOTOR_SPEED_LIMIT);
   delay(400);
   motors.setSpeeds(150, 150);
