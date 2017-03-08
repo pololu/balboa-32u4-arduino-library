@@ -69,23 +69,23 @@ void balance()
   // This variable measures how close we are to our basic
   // balancing goal - being on a trajectory that would cause us
   // to rise up to the vertical position with zero speed left at
-  // the top.  This is similar to the falling_angle_offset used
+  // the top.  This is similar to the fallingAngleOffset used
   // for LED feedback and a calibration procedure discussed at
   // the end of Balancer.ino.
   //
   // It is in units of millidegrees, like the angle variable, and
   // you can think of it as an angular estimate of how far off we
   // are from being balanced.
-  int32_t rising_angle_offset = angleRate * ANGLE_RATE_RATIO + angle;
+  int32_t risingAngleOffset = angleRate * ANGLE_RATE_RATIO + angle;
 
-  // Combine rising_angle_offset with the distance and speed
+  // Combine risingAngleOffset with the distance and speed
   // variables, using the calibration constants defined in
   // Balance.h, to get our motor response.  Rather than becoming
   // the new motor speed setting, the response is an amount that
   // is added to the motor speeds, since a *change* in speed is
   // what causes the robot to tilt one way or the other.
   motorSpeed += (
-    + ANGLE_RESPONSE * rising_angle_offset
+    + ANGLE_RESPONSE * risingAngleOffset
     + DISTANCE_RESPONSE * (distanceLeft + distanceRight)
     + SPEED_RESPONSE * (speedLeft + speedRight)
     ) / 100 / GEAR_RATIO;
@@ -105,7 +105,8 @@ void balance()
   // robot to perform controlled turns.
   int16_t distanceDiff = distanceLeft - distanceRight;
 
-  motors.setSpeeds(motorSpeed + distanceDiff * DISTANCE_DIFF_RESPONSE / 100,
+  motors.setSpeeds(
+    motorSpeed + distanceDiff * DISTANCE_DIFF_RESPONSE / 100,
     motorSpeed - distanceDiff * DISTANCE_DIFF_RESPONSE / 100);
 }
 
