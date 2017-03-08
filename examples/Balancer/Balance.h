@@ -4,10 +4,10 @@
 #include <LSM6.h>
 #include <Balboa32U4.h>
 
-// This code was developed for a unit using 50:1 motors and 45:21
-// plastic gears, for an overall gear ratio of 111.  Adjust the
-// ratio below to scale various constants in the balancing
-// algorithm to match your robot.
+// This code was developed for a Balboa unit using 50:1 motors
+// and 45:21 plastic gears, for an overall gear ratio of 111.
+// Adjust the ratio below to scale various constants in the
+// balancing algorithm to match your robot.
 const int16_t GEAR_RATIO = 111;
 
 // This constant limits the maximum motor speed.  If your gear
@@ -56,9 +56,19 @@ const int16_t ANGLE_RESPONSE = 11;
 // constant is positive: to move forwards, the robot actually has
 // to first roll its wheels backwards, so that it can *fall*
 // forwards.  When this constant is adjusted properly, the robot
-// will no longer zoom off in one directon, but it will drive
+// will no longer zoom off in one direction, but it will drive
 // back and forth a few times before falling down.
 const int16_t DISTANCE_RESPONSE = 73;
+
+// DISTANCE_DIFF_RESPONSE determines the response to differences
+// between the left and right motors, preventing undesired
+// rotation due to differences in the motors and gearing.  Unlike
+// DISTANCE_REPONSE, it should be negative: if the left motor is
+// lagging, we need to increase its speed and decrease the speed
+// of the right motor.  If this constant is too small, the robot
+// will spin left and right as it rocks back and forth; if it is
+// too large it will become unstable.
+const int16_t DISTANCE_DIFF_RESPONSE = -50;
 
 // SPEED_RESPONSE supresses the large back-and-forth oscillations
 // caused by DISTANCE_RESPONSE.  Increase this until these

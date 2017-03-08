@@ -137,27 +137,42 @@ void loop()
   // Illuminate the red LED if the last full update was too slow.
   ledRed(balanceUpdateDelayed());
 
-  // Display feedback on the yellow and green LEDs.  This is
-  // useful for calibrating ANGLE_RATE_RATIO: if the robot is
-  // released from nearly vertical and falls onto its bottom, the
-  // green LED should remain lit the entire time.  If it is
-  // tilted beyond vertical and given a push to fall back to its
-  // bottom side, the yellow LED should remain lit until it hits
-  // the ground.  In practice, it is hard to achieve both of
-  // these perfectly, but if you can get close, your constant
-  // will probably be good enough for balancing.
-  int32_t diff = angleRate * ANGLE_RATE_RATIO - angle;
-  if (diff > 0)
+  // Display feedback on the yellow and green LEDs depending on the
+  // variable falling_angle_offset.  This variable is similar to the
+  // rising_angle_offset used in Balance.cpp.
+  //
+  // When the robot is rising toward vertical (not falling), angleRate and
+  // angle have opposite signs, so this variable will just be positive
+  // or negative depending on which side of vertical it is on.
+  //
+  // When the robot is falling, the variable measures how far off it
+  // is from a trajectory starting it almost perfectly balanced then
+  // falling to one side or the other with the motors off.
+  //
+  // Since this depends on ANGLE_RATE_RATIO, it is useful for
+  // calibration.  If you have changed the wheels or added weight to
+  // your robot, you can try checking these items, with the motor
+  // power OFF (powered by USB):
+  //
+  // 1. Try letting the robot fall with the Balboa 32U4 PCB up.  The
+  //    green LED should remain lit the entire time.  If it sometimes
+  //    shows yellow instead of green, reduce ANGLE_RATE_RATIO.
+  //
+  // 2. If it is tilted beyond vertical and given a push back to the
+  //    PCB-up side again, the yellow LED should remain lit until it
+  //    hits the ground.  If you see green, increase ANGLE_RATE_RATIO.
+  //
+  // In practice, it is hard to achieve both 1 and 2 perfectly, but
+  // if you can get close, your constant will probably be good enough
+  // for balancing.
+  int32_t falling_angle_offset = angleRate * ANGLE_RATE_RATIO - angle;
+  if (falling_angle_offset > 0)
   {
-    // On the top side, or pushed from the top side over to the
-    // bottom.
     ledYellow(1);
     ledGreen(0);
   }
   else
   {
-    // On the bottom side, or pushed from the bottom over to the
-    // top.
     ledYellow(0);
     ledGreen(1);
   }

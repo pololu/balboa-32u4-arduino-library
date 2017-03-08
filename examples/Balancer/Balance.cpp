@@ -54,15 +54,38 @@ void balanceSetup()
   gYZero = total / CALIBRATION_ITERATIONS;
 }
 
+// This function contains the core algorithm for balancing a
+// Balboa 32U4 robot.
 void balance()
 {
-  // Drift toward angle=0 with timescale ~10s.
+  // Adjust toward angle=0 with timescale ~10s, to compensate for
+  // gyro drift.  More advanced AHRS systems use the
+  // accelerometer as a reference for finding the zero angle, but
+  // this is a simpler technique: for a balancing robot, as long
+  // as it is balancing, we know that the angle must be zero on
+  // average, or we would fall over.
   angle = angle * 999 / 1000;
 
-  int32_t diff = angleRate * ANGLE_RATE_RATIO + angle;
+  // This variable measures how close we are to our basic
+  // balancing goal - being on a trajectory that would cause us
+  // to rise up to the vertical position with zero speed left at
+  // the top.  This is similar to the falling_angle_offset used
+  // for LED feedback and a calibration procedure discussed at
+  // the end of Balancer.ino.
+  //
+  // It is in units of millidegrees, like the angle variable, and
+  // you can think of it as an angular estimate of how far off we
+  // are from being balanced.
+  int32_t rising_angle_offset = angleRate * ANGLE_RATE_RATIO + angle;
 
+  // Combine rising_angle_offset with the distance and speed
+  // variables, using the calibration constants defined in
+  // Balance.h, to get our motor response.  Rather than becoming
+  // the new motor speed setting, the response is an amount that
+  // is added to the motor speeds, since a *change* in speed is
+  // what causes the robot to tilt one way or the other.
   motorSpeed += (
-    + ANGLE_RESPONSE * diff
+    + ANGLE_RESPONSE * rising_angle_offset
     + DISTANCE_RESPONSE * (distanceLeft + distanceRight)
     + SPEED_RESPONSE * (speedLeft + speedRight)
     ) / 100 / GEAR_RATIO;
@@ -76,10 +99,14 @@ void balance()
     motorSpeed = -MOTOR_SPEED_LIMIT;
   }
 
+  // Adjust for differences in the left and right distances; this
+  // will prevent the robot from rotating as it rocks back and
+  // forth due to differences in the motors, and it allows the
+  // robot to perform controlled turns.
   int16_t distanceDiff = distanceLeft - distanceRight;
 
-  motors.setSpeeds(motorSpeed - distanceDiff / 2,
-    motorSpeed + distanceDiff / 2);
+  motors.setSpeeds(motorSpeed + distanceDiff * DISTANCE_DIFF_RESPONSE / 100,
+    motorSpeed - distanceDiff * DISTANCE_DIFF_RESPONSE / 100);
 }
 
 void lyingDown()
