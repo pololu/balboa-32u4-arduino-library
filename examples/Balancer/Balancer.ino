@@ -1,6 +1,10 @@
 // This example shows how to make a Balboa balance on its two
 // wheels and drive around while balancing.
 //
+// To run this demo, you will need to install the LSM6 library:
+//
+// https://github.com/pololu/lsm6-arduino
+//
 // To use this demo, place the robot on the ground with the
 // circuit board facing up, and then turn it on.  Be careful to
 // not move the robot for a few seconds after powering it on,
