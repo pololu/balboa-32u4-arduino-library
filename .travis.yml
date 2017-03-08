@@ -15,5 +15,5 @@ env:
 script:
 - set -e;
   for e in examples/*; do
-    platformio ci --board=$BOARD --lib=. --lib="/tmp/lsm6-arduino-master/" $e/*;
+    platformio ci --board=$BOARD --lib=. --lib="/tmp/lsm6-arduino-master/" --lib="/tmp/lis3mdl-arduino-master/" $e/*;
   done
