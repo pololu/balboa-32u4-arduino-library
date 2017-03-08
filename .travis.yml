@@ -7,6 +7,7 @@ cache:
 install:
 - pip install -U platformio
 - curl -L https://github.com/pololu/lsm6-arduino/archive/master.tar.gz | tar xz -C /tmp
+- curl -L https://github.com/pololu/lis3mdl-arduino/archive/master.tar.gz | tar xz -C /tmp
 
 env:
 - BOARD=leonardo
