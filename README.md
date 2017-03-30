@@ -1,4 +1,4 @@
-# Balba32U4 library
+# Balboa32U4 library
 
 Version: 1.0.0<br/>
 Release date: 2017-03-08<br/>
