@@ -1,7 +1,7 @@
 # Balboa32U4 library
 
-Version: 1.0.0<br/>
-Release date: 2017-03-08<br/>
+Version: 1.0.1<br/>
+Release date: 2017-07-17<br/>
 [![Build Status](https://travis-ci.org/pololu/balboa-32u4-arduino-library.svg?branch=master)](https://travis-ci.org/pololu/balboa-32u4-arduino-library)<br/>
 [www.pololu.com](https://www.pololu.com/)
 
@@ -75,4 +75,5 @@ For complete documentation, see https://pololu.github.io/balboa-32u4-arduino-lib
 
 ## Version history
 
+* 1.0.1 (2017-07-17): Fixed a bug that caused errors from the right encoder to get reported as errors from the left encoder.
 * 1.0.0 (2017-03-08): Original release.
