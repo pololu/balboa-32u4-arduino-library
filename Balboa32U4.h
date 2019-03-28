@@ -18,6 +18,7 @@
 #include <Balboa32U4Buzzer.h>
 #include <Balboa32U4Encoders.h>
 #include <Balboa32U4LCD.h>
+#include <Balboa32U4LineSensors.h>
 #include <Balboa32U4Motors.h>
 
 // TODO: servo support

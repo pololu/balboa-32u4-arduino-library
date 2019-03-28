@@ -43,6 +43,7 @@ The main classes and functions provided by the library are listed below:
 * Balboa32U4Buzzer
 * Balboa32U4Encoders
 * Balboa32U4LCD
+* Balboa32U4LineSensors
 * Balboa32U4Motors
 * ledRed()
 * ledGreen()
