@@ -83,6 +83,17 @@ const uint8_t UPDATE_TIME_MS = 10;
 // Take 100 measurements initially to calibrate the gyro.
 const uint8_t CALIBRATION_ITERATIONS = 100;
 
+// These values represent the angles from vertical, in
+// millidegrees, at which the Balboa will start and stop trying
+// to balance.  They are different to add some hysteresis so that
+// the robot has to be relatively more upright before beginning
+// to balance but can fall a little farther before giving up.
+// The default values make the Balboa start balancing at
+// 45 degrees from vertical and stop balancing at 70 degrees from
+// vertical.
+const int32_t START_BALANCING_ANGLE = 45000;
+const int32_t STOP_BALANCING_ANGLE = 70000;
+
 // These variables will be accessible from your sketch.
 extern int32_t angle; // units: millidegrees
 extern int32_t angleRate; // units: degrees/s (or millidegrees/ms)

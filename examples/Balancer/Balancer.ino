@@ -35,6 +35,8 @@ Balboa32U4Motors motors;
 Balboa32U4Encoders encoders;
 Balboa32U4Buzzer buzzer;
 Balboa32U4ButtonA buttonA;
+Balboa32U4ButtonB buttonB;
+Balboa32U4ButtonC buttonC;
 
 void setup()
 {
@@ -118,22 +120,37 @@ void standUp()
 
 void loop()
 {
+  static bool enableSong = false;
+  static bool enableDrive = false;
+
   balanceUpdate();
 
   if (isBalancing())
   {
-    // Once you have it balancing well, uncomment these lines for
-    // something fun.
-
-    // playSong();
-    // driveAround();
+    if (enableSong)   { playSong(); }
+    if (enableDrive)  { driveAround(); }
   }
   else
   {
     buzzer.stopPlaying();
+    balanceDrive(0, 0); // reset driving speeds
 
     if (buttonA.getSingleDebouncedPress())
     {
+      enableSong = false;
+      enableDrive = false;
+      standUp();
+    }
+    else if (buttonB.getSingleDebouncedPress())
+    {
+      enableSong = false;
+      enableDrive = true;
+      standUp();
+    }
+    else if (buttonC.getSingleDebouncedPress())
+    {
+      enableSong = true;
+      enableDrive = true;
       standUp();
     }
   }

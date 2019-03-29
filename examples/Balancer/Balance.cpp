@@ -11,7 +11,7 @@ int32_t distanceRight;
 int32_t speedRight;
 int32_t driveRight;
 int16_t motorSpeed;
-bool isBalancingStatus;
+bool isBalancingStatus = false;
 bool balanceUpdateDelayedStatus;
 
 bool isBalancing()
@@ -120,15 +120,12 @@ void lyingDown()
 
   if (angleRate > -2 && angleRate < 2)
   {
-    // It's really calm, so we know the angles.
-    if (imu.a.z > 0)
-    {
-      angle = 110000;
-    }
-    else
-    {
-      angle = -110000;
-    }
+    // It's really calm, so use the accelerometer to measure the
+    // robot's rest angle.  The atan2 function returns a result
+    // in radians, so we multiply it by 180000/pi to convert it
+    // to millidegrees.
+    angle = atan2(imu.a.z, imu.a.x) * 57296;
+
     distanceLeft = 0;
     distanceRight = 0;
   }
@@ -188,6 +185,7 @@ void balanceUpdate()
 {
   static uint16_t lastMillis;
   uint16_t ms = millis();
+  static uint8_t count = 0;
 
   // Perform the balance updates at 100 Hz.
   if ((uint16_t)(ms - lastMillis) < UPDATE_TIME_MS) { return; }
@@ -197,14 +195,42 @@ void balanceUpdate()
   balanceUpdateSensors();
   balanceDoDriveTicks();
 
-  if (imu.a.x < 0)
+  if (isBalancingStatus)
   {
-    lyingDown();
-    isBalancingStatus = false;
+    balance();
+
+    // Stop trying to balance if we have been farther from
+    // vertical than STOP_BALANCING_ANGLE for 5 counts.
+    if (abs(angle) > STOP_BALANCING_ANGLE)
+    {
+      if (++count > 5)
+      {
+        isBalancingStatus = false;
+        count = 0;
+      }
+    }
+    else
+    {
+      count = 0;
+    }
   }
   else
   {
-    balance();
-    isBalancingStatus = true;
+    lyingDown();
+
+    // Start trying to balance if we have been closer to
+    // vertical than START_BALANCING_ANGLE for 5 counts.
+    if (abs(angle) < START_BALANCING_ANGLE)
+    {
+      if (++count > 5)
+      {
+        isBalancingStatus = true;
+        count = 0;
+      }
+    }
+    else
+    {
+      count = 0;
+    }
   }
 }
