@@ -1,7 +1,7 @@
 # Balboa32U4 library
 
-Version: 1.1.0<br/>
-Release date: 2019-04-04<br/>
+Version: 1.1.1<br/>
+Release date: 2019-04-05<br/>
 [![Build Status](https://travis-ci.org/pololu/balboa-32u4-arduino-library.svg?branch=master)](https://travis-ci.org/pololu/balboa-32u4-arduino-library)<br/>
 [www.pololu.com](https://www.pololu.com/)
 
@@ -78,6 +78,7 @@ For complete documentation, see https://pololu.github.io/balboa-32u4-arduino-lib
 
 ## Version history
 
+* 1.1.1 (2019-04-05): Fixed narrowing conversion warning/error in Demo.ino.
 * 1.1.0 (2019-04-04): Added Balboa32U4LineSensors class and LineSensorTest example. Improved Balancer example to measure lying down angle and more effectively decide whether it is balancing.
 * 1.0.1 (2017-07-17): Fixed a bug that caused errors from the right encoder to get reported as errors from the left encoder.
 * 1.0.0 (2017-03-08): Original release.
