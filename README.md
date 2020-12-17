@@ -2,7 +2,6 @@
 
 Version: 1.1.1<br/>
 Release date: 2019-04-05<br/>
-[![Build Status](https://travis-ci.org/pololu/balboa-32u4-arduino-library.svg?branch=master)](https://travis-ci.org/pololu/balboa-32u4-arduino-library)<br/>
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
