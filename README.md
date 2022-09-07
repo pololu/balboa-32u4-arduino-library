@@ -1,7 +1,5 @@
 # Balboa32U4 library
 
-Version: 1.1.1<br/>
-Release date: 2019-04-05<br/>
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
