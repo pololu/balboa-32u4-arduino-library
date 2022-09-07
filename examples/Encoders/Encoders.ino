@@ -55,7 +55,7 @@ void loop()
     bool errorLeft = encoders.checkErrorLeft();
     bool errorRight = encoders.checkErrorRight();
 
-    if(encoders.checkErrorLeft())
+    if (errorLeft)
     {
       // An error occurred on the left encoder channel.
       // Display it on the LCD for the next 10 iterations and
@@ -64,9 +64,9 @@ void loop()
       buzzer.playFromProgramSpace(encoderErrorLeft);
     }
 
-    if(encoders.checkErrorRight())
+    if (errorRight)
     {
-      // An error occurred on the left encoder channel.
+      // An error occurred on the right encoder channel.
       // Display it on the LCD for the next 10 iterations and
       // also beep.
       displayErrorRightCountdown = 10;
